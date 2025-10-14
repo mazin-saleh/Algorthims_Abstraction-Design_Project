@@ -41,23 +41,16 @@ def program2(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
         else:
             chosenStatus[vault] = False
     
+    totalValue = chosenL[n-1]
+    # Backtrack from the end to reconstruct the chosen indices
     finalList = []
-    greatestVault = 0
-    
-    # since distribution is unimodal, we can't ensure that the greatest value is at the end so we iterate to find the greatest.
-    for vault in range(1, n): 
-        if chosenL[vault] > chosenL[greatestVault]:
-            greatestVault = vault
-
-    totalValue = chosenL[greatestVault]
-    # iterate through list in reverse order since last vault that we iterate from should be the greatest
-    while greatestVault >= 0:
-        if chosenStatus[greatestVault] == True:
-            finalList.append(greatestVault + 1)
-            greatestVault = helperL[greatestVault]
+    i = n - 1
+    while i >= 0:
+        if chosenStatus[i]:
+            finalList.append(i + 1)
+            i = helperL[i]  # jump to the previous safe index
         else:
-            greatestVault = -1
-
+            i -= 1
     finalList.reverse()
     return totalValue, finalList
 
