@@ -29,7 +29,7 @@ def program2(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
             chosenL[vault] = 0
             helperL[vault] = -1
 
-        vaultValue = values(vault) #take the value of the current vault we're on
+        vaultValue = values[vault] #take the value of the current vault we're on
         if vault - k - 1 >= 0:
             vaultValue += chosenL[vault - k - 1] # if we can safely pick vault before it, add it to overall value
 
@@ -43,13 +43,14 @@ def program2(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     
     finalList = []
     greatestVault = 0
-
+    
     # since distribution is unimodal, we can't ensure that the greatest value is at the end so we iterate to find the greatest.
-    for vaults in range(1, n): 
+    for vault in range(1, n): 
         if chosenL[vault] > chosenL[greatestVault]:
-            greatestVault = chosenL[greatestVault]
+            greatestVault = vault
 
-    # iterate through list in reverse order since last vault is 
+    totalValue = chosenL[greatestVault]
+    # iterate through list in reverse order since last vault that we iterate from should be the greatest
     while greatestVault >= 0:
         if chosenStatus[greatestVault] == True:
             finalList.append(greatestVault + 1)
@@ -58,7 +59,7 @@ def program2(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
             greatestVault = -1
 
     finalList.reverse()
-    return chosenL[greatestVault], finalList
+    return totalValue, finalList
 
 
 if __name__ == '__main__':
