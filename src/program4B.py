@@ -50,7 +50,7 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
                 vault -= 1
         else: #if not and the current vault equals the same value as the greatest running total, just break and add the singular vault to the list
             if dp[vault] == values[vault]:
-                vaultsChosen.append(vault)
+                vaultsChosen.append(vault + 1)
                 break
             else: 
                 vault -= 1
