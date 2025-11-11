@@ -20,7 +20,8 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     vaultsChosen = [] # return list (reconstruction)
     vault = n-1 # index for reconstruction purposes
 
-    dp = [] * n, dp[0] = values[0] #initialize dp list, this will be the running total of the best values
+    dp = [0] * n
+    dp[0] = values[0] #initialize dp list, this will be the running total of the best values
 
     # Solution to CASE 1 and CASE 2
     # CASE 1: if we take i
@@ -36,14 +37,14 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
             if currentVault - validVault > k: 
                 dp[currentVault] = max(dp[currentVault], dp[validVault] + values[currentVault])
 
-        dp[currentVault] = max(dp[currentVault], values[currentVault]
+        dp[currentVault] = max(dp[currentVault], values[currentVault])
 
     
     # RECONSTRUCTION #
     while vault >= 0:
         if vault-k-1 >= 0: #if vaults exist -k positions away from the current vault
             if dp[vault] == dp[vault-k-1] + values[vault]: #if the current addition of vaults equals the addition of the current one alongside the previous i-k-1 vaults
-                vaultsChosen.append(vault)
+                vaultsChosen.append(vault + 1)
                 vault = vault-k-1
             else:
                 vault -= 1
