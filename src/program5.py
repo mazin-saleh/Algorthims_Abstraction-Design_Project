@@ -14,13 +14,14 @@ def program5(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     int:  maximal total value
     List[int]: the indices of the chosen vaults(1-indexed)
     """
-   if n == 0: # base case
+    if n == 0: # base case
         return 0, []
     
     vaultsChosen = [] # return list (reconstruction)
     vault = n-1 # index for reconstruction purposes
 
-    dp = [] * n, dp[0] = values[0] #initialize dp list, this will be the running total of the best values
+    dp = [0] * n
+    dp[0] = values[0] #initialize dp list, this will be the running total of the best values
 
 
     for i in range(1,n): 
