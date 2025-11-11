@@ -34,13 +34,13 @@ def program5(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     while vault >= 0:
         if vault-k-1 >= 0: #if vaults exist -k positions away from the current vault
             if dp[vault] == dp[vault-k-1] + values[vault]: #if the current addition of vaults equals the addition of the current one alongside the previous i-k-1 vaults
-                vaultsChosen.append(vault)
+                vaultsChosen.append(vault + 1)
                 vault = vault-k-1
             else:
                 vault -= 1
         else: #if not and the current vault equals the same value as the greatest running total, just break and add the singular vault to the list
             if dp[vault] == values[vault]:
-                vaultsChosen.append(vault)
+                vaultsChosen.append(vault + 1)
                 break
             else: 
                 vault -= 1
