@@ -29,12 +29,16 @@ def program4B(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     # CASE 2: if we don't take i
         # if we don't decide to take i, then we would just take the last total value which we know is the best as of yet
 
-    for i in range(1,n): 
-        if i-k-1 >= 0: 
-            dp[i] = max(dp[i-1], dp[i-k-1] + values[i])
-        else:
-            dp[i] = max(dp[i-1], values[i])
+    for currentVault in range(1,n):
+        dp[currentVault] = dp[currentVault - 1]
+        
+        for validVault in range(currentVault):
+            if currentVault - validVault > k: 
+                dp[currentVault] = max(dp[currentVault], dp[validVault] + values[currentVault])
 
+        dp[currentVault] = max(dp[currentVault], values[currentVault]
+
+    
     # RECONSTRUCTION #
     while vault >= 0:
         if vault-k-1 >= 0: #if vaults exist -k positions away from the current vault
