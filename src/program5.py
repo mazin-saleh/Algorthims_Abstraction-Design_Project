@@ -22,12 +22,6 @@ def program5(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
 
     dp = [] * n, dp[0] = values[0] #initialize dp list, this will be the running total of the best values
 
-    # Solution to CASE 1 and CASE 2
-    # CASE 1: if we take i
-        # if vaults exist past -k, take i and i-k-1
-        # if vaults don't exist past -k, just take i
-    # CASE 2: if we don't take i
-        # if we don't decide to take i, then we would just take the last total value which we know is the best as of yet
 
     for i in range(1,n): 
         if i-k-1 >= 0: 
