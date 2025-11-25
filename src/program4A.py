@@ -61,6 +61,16 @@ def program4A(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     return best_total, chosen
 
 
+# wrapper for external callers/tests
+def solve(values: List[int], k: int) -> Tuple[int, List[int]]:
+    return program4A(len(values), k, values)
+
+
+# wrapper for demo/tests (n, k, values signature)
+def solve(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
+    return program4A(n, k, values)
+
+
 if __name__ == '__main__':
     n, k = map(int, input().split())
     values = list(map(int, input().split()))

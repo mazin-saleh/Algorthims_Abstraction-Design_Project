@@ -48,6 +48,16 @@ def program5(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     return dp[n-1], vaultsChosen[::-1] 
 
 
+# wrapper for external callers/tests
+def solve(values: List[int], k: int) -> Tuple[int, List[int]]:
+    return program5(len(values), k, values)
+
+
+# wrapper for demo/tests (n, k, values signature)
+def solve(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
+    return program5(n, k, values)
+
+
 if __name__ == '__main__':
     n, k = map(int, input().split())
     values = list(map(int, input().split()))

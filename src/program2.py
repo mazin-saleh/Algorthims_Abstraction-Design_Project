@@ -55,6 +55,11 @@ def program2(n: int, k: int, values: List[int]) -> Tuple[int, List[int]]:
     return totalValue, finalList
 
 
+# wrapper for external callers/tests
+def solve(values: List[int], k: int) -> Tuple[int, List[int]]:
+    return program2(len(values), k, values)
+
+
 if __name__ == '__main__':
     n, k = map(int, input().split())
     values = list(map(int, input().split()))

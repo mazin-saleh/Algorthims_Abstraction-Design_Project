@@ -146,7 +146,8 @@ plt.close()
 # Program 3 (Brute Force G)
 # -----------------------------
 times_s3 = []
-for n in sizes[:4]:  # only test smaller n due to exponential time
+# use small explicit sizes for brute force to avoid recursion depth and time blowup
+for n in [12, 15, 18, 20]:
     values = [random.randint(1, 1000) for _ in range(n)]
     avg_time = average_runtime(program3, n, k, values)
     times_s3.append(avg_time)
